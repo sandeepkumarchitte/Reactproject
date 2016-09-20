@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+
+  base:
+    image: docker.uacf.io/uar-web/boilerplate:CIVERSION
+    environment:
+      - NODE_ENV=production
+
+  lintjs:
+    extends:
+      service: base
+    command: npm run lint -- --format checkstyle --output-file /out/checkstyle/eslint.xml

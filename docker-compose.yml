@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+
+  base:
+    build:
+      context: .
+    environment:
+      - NODE_ENV=development
+      - HTTP_SERVE_PORT=3000
+    network_mode: 'bridge'
+    volumes:
+      - $PWD:/usr/local/service
+      - /usr/local/service/node_modules
+
+  local:
+    extends:
+      service: base
+    command: npm run dev
+    ports:
+      - 3000:3000
